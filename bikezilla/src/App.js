@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Header from "./Components/Header";
+import Cart from "./Components/Cart";
+import Home from "./Components/Home";
+import Login from "./Components/Login";
+import Profile from "./Components/Profile";
+import ResetPassword from "./Components/ResetPassword";
+import Signup from "./Components/Signup";
+import Wishlist from "./Components/Wishlist";
+import PrivateRoute from "./Utils/PrivateRoute";
+import { AuthProvider } from "./Utils/AuthContext";
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Header />
+        <Switch>
+          <PrivateRoute path="/wishlist" component={Wishlist} />
+          <PrivateRoute path="/cart" component={Cart} />
+          <PrivateRoute path="/profile" component={Profile} />
+          <Route path="/resetPassword" component={ResetPassword} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
+          <Route path="/" component={Home} />
+        </Switch>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
