@@ -1,13 +1,16 @@
 import React from "react";
 import Sidebar from "./Sidebar";
+import { useHistory } from "react-router";
 
 export default function Home() {
+
+  const history = useHistory();
   return (
     <div>
       <div className="banner">
         <h1>Welcome to Bikezilla!</h1>
         <p>We Keep you Riding</p>
-        <button className="standalone"> Get Started </button>
+        <button onClick={()=>history.push("/products")}   className="standalone"> Get Started </button>
       </div>
 
       <div className="container">
@@ -52,7 +55,7 @@ export default function Home() {
           </div>
         </div>
 
-        <button className="standalone">View More Bikes</button>
+        <button onClick={()=>history.push("/products")} className="standalone">View More Bikes</button>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import Products from "./Components/Products";
 import Footer from "./Components/Footer";
 import { AuthProvider } from "./Utils/AuthContext";
-import "./App.css";
+import Product from "./Components/Product";
 import { DataProvider } from "./Utils/DataContext";
 
 function App() {
@@ -29,6 +29,7 @@ function App() {
             <Route path="/signup" component={Signup} />
             <Route path="/login" component={Login} />
             <Route path="/products" component={Products} />
+            <Route path="/product/:id" component={Product} />
             <Route path="/" component={Home} />
           </Switch>
           <Footer />
