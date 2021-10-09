@@ -23,8 +23,8 @@ export default function Login() {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                
-            {(error)?(error):("")} <br/>
+            <h1> Login</h1>
+            {(error)?(error):(<></>)} <br/>
                 <label htmlFor="email">
                     Email : <br/>
                     <input value={email} type="email" name="email" id="email" onChange={(e)=>setEmail(e.target.value)} />

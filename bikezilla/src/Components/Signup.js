@@ -13,13 +13,13 @@ export default function Signup() {
     const [userName, setUserName] = useState("");
     const [mobile, setMobile] = useState("");
     
-    const {signup, addUserData, user} = useAuth();
+    const {signup, addUserData} = useAuth();
     const history = useHistory();
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-            await signup(email, password);
+            const {user} = await signup(email, password);
             await addUserData(user.uid, {userName,email,address,city,state,pincode, mobile});
             history.push("/profile");   
             
@@ -31,6 +31,7 @@ export default function Signup() {
     return (
         <div>
             <form autoComplete="false" onSubmit={handleSubmit}>
+            <h1> Sign Up</h1>
                 {(error)?("Error : "+error):("")} 
                 <label htmlFor="userName">
                     Name : 

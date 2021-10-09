@@ -9,29 +9,32 @@ import ResetPassword from "./Components/ResetPassword";
 import Signup from "./Components/Signup";
 import Wishlist from "./Components/Wishlist";
 import PrivateRoute from "./Utils/PrivateRoute";
-import Products from './Components/Products'
+import Products from "./Components/Products";
 import Footer from "./Components/Footer";
 import { AuthProvider } from "./Utils/AuthContext";
 import "./App.css";
+import { DataProvider } from "./Utils/DataContext";
 
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-        <Header />
-        <Switch>
-          <PrivateRoute path="/wishlist" component={Wishlist} />
-          <PrivateRoute path="/cart" component={Cart} />
-          <PrivateRoute path="/profile" component={Profile} />
-          <Route path="/resetPassword" component={ResetPassword} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
-          <Route path="/products" component={Products} />
-          <Route path="/" component={Home} />
-        </Switch>
-        <Footer />
-      </BrowserRouter>
-    </AuthProvider>
+    <BrowserRouter>
+      <AuthProvider>
+        <DataProvider>
+          <Header />
+          <Switch>
+            <PrivateRoute path="/wishlist" component={Wishlist} />
+            <PrivateRoute path="/cart" component={Cart} />
+            <PrivateRoute path="/profile" component={Profile} />
+            <Route path="/resetPassword" component={ResetPassword} />
+            <Route path="/signup" component={Signup} />
+            <Route path="/login" component={Login} />
+            <Route path="/products" component={Products} />
+            <Route path="/" component={Home} />
+          </Switch>
+          <Footer />
+        </DataProvider>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
