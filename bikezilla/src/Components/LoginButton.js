@@ -4,8 +4,8 @@ import { useHistory } from 'react-router'
 export default function LoginButton() {
     const history = useHistory();
     return (
-        <div>
-            <button onClick={()=> history.push("/login")}> Login</button>
+        <div className="login-button">
+            <button className="standalone" onClick={()=> history.push("/login")}> Login</button>
         </div>
     )
 }

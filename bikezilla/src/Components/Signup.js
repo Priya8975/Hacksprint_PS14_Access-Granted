@@ -13,14 +13,15 @@ export default function Signup() {
     const [userName, setUserName] = useState("");
     const [mobile, setMobile] = useState("");
     
-    const {signup} = useAuth();
+    const {signup, addUserData, user} = useAuth();
     const history = useHistory();
 
     const handleSubmit = async (e)=>{
         e.preventDefault();
         try{
-            await signup(email, password)
-            history.push("/profile")
+            await signup(email, password);
+            await addUserData(user.uid, {userName,email,address,city,state,pincode, mobile});
+            history.push("/profile");   
             
         } catch(e){
             setError(e.error);
@@ -67,9 +68,10 @@ export default function Signup() {
                 </label>
 
                 <input type="submit" value="Sign up" />
-            </form>
 
-            <Link to="/resetPassword" >Forgot Password</Link>
+                
+                Already a member? <Link to="/login">Login</Link>
+            </form>
         </div>
     )
 }

@@ -9,6 +9,8 @@ import ResetPassword from "./Components/ResetPassword";
 import Signup from "./Components/Signup";
 import Wishlist from "./Components/Wishlist";
 import PrivateRoute from "./Utils/PrivateRoute";
+import Products from './Components/Products'
+import Footer from "./Components/Footer";
 import { AuthProvider } from "./Utils/AuthContext";
 import "./App.css";
 
@@ -24,8 +26,10 @@ function App() {
           <Route path="/resetPassword" component={ResetPassword} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
+          <Route path="/products" component={Products} />
           <Route path="/" component={Home} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     </AuthProvider>
   );

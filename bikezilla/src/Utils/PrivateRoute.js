@@ -12,6 +12,7 @@ export default function PrivateRoute({ component: Component, ...rest }) {
       render={(props) => {
         return (user )? (<Component {...props} />) : (<LoginButton />);
       }}
-    ></Route>
+    >
+    </Route>
   );
 }

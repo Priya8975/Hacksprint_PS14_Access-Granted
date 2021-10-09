@@ -34,9 +34,9 @@ export default function Login() {
                     <input value={password} type="password" name="password" id="password" onChange={(e)=>setPassword(e.target.value)} />
                 </label>
                 <input type="submit" value="Login" />
+                <Link to="/resetPassword" >Forgot Password</Link>
             </form>
 
-            <Link to="/resetPassword" >Forgot Password</Link>
         </div>
     )
 }
