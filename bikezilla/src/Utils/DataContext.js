@@ -34,6 +34,10 @@ export function DataProvider({ children }) {
       if (docsnap.exists()) tempData["cart"] = docsnap.data();
       else tempData["cart"] = {};
 
+      docsnap = await getDoc(doc(db, "userOrders", user.uid));
+      if (docsnap.exists()) tempData["orders"] = docsnap.data();
+      else tempData["orders"] = {};
+
       docsnap = await getDoc(doc(db, "userWishlist", user.uid));
       if (docsnap.exists()) tempData["wishlist"] = docsnap.data();
       else tempData["wishlist"] = {};
@@ -61,6 +65,11 @@ export function DataProvider({ children }) {
 
   const setCart = async (tempCart) => {
     await setDoc(doc(db, "userCart", user.uid), tempCart);
+    getUsersData();
+  };
+
+  const setOrders = async (tempOrders) => {
+    await setDoc(doc(db, "userOrders", user.uid), tempOrders);
     getUsersData();
   };
 
@@ -160,6 +169,15 @@ export function DataProvider({ children }) {
     setWishlist({});
   }
 
+
+  const addToOrders = async ()=>{
+    const tempOrders = {...data.orders};
+    const orderId = "Order-" + (Object.keys(data.orders).length+1);
+    tempOrders[orderId] = {...data.cart};
+    await clearCart();
+    await setOrders(tempOrders);
+  }
+
   const value = {
     data,
     products,
@@ -168,7 +186,8 @@ export function DataProvider({ children }) {
     clearCart,
     addToWishlist,
     removeFromWishlist,
-    clearWishlist
+    clearWishlist,
+    addToOrders
   };
   return <DataContext.Provider value={value}>{children}</DataContext.Provider>;
 }
